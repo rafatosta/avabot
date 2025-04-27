@@ -2,6 +2,7 @@ from avabot.webdrive.AvaWebDrive import AvaWebDrive
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
 
 class AVARegistrationTool(AvaWebDrive):
@@ -39,12 +40,21 @@ class AVARegistrationTool(AvaWebDrive):
 
             print("Botão 'Inscrever usuários' clicado com sucesso!")
 
-            # Seleciona o botão para pesquisar alunos
-            input_field = self.find_element(
-                By.XPATH, '//input[@data-fieldtype="autocomplete"]', 99999)
+            for aluno in self.alunos:
+                print("Adicionando aluno(a):", aluno)
+                # Seleciona o botão para pesquisar alunos
+                input_field = self.find_element(
+                    By.XPATH, '//input[@data-fieldtype="autocomplete"]', 99999)
 
-            input_field.send_keys("Nome do aluno")
-            input_field.click()
+                input_field.send_keys(aluno)
+
+                input_aluno = self.find_element(
+                    By.XPATH, '(//ul[@class="form-autocomplete-suggestions"]//li)[1]', 99999)
+
+                input_aluno.click()
+
+                # Limpa o nome
+                input_field.clear()
 
         except Exception as e:
             print(f"❌ Erro ao tentar logar: {e}")
