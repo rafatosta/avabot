@@ -1,10 +1,10 @@
-from avabot.webdrive.SuapWebDrive import SuapWebDrive
+from avabot.webdrive.AvaWebDrive import AvaWebDrive
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 
-class AVARegistrationTool(SuapWebDrive):
+class AVARegistrationTool(AvaWebDrive):
 
     home = "https://ava.ifba.edu.br/my/courses.php"
     cursos = "https://ava.ifba.edu.br/my/courses.php"
@@ -16,7 +16,7 @@ class AVARegistrationTool(SuapWebDrive):
         # Lista de alunos
         self.alunos = alunos
 
-    def login(self):
+    def login_manual(self):
         self.driver.get(self.url)
 
     def exec(self):
@@ -31,10 +31,7 @@ class AVARegistrationTool(SuapWebDrive):
 
             print("Login realizado com sucesso!")
 
-            input("\n\nDigite qualquer tecla para finalizar...")
 
         except Exception as e:
             print(f"❌ Erro ao tentar logar: {e}")
-            self.close()
-        finally:
-            self.close()
+            #self.close()
