@@ -35,7 +35,7 @@ class MainWindow(QMainWindow):
 
     def button_clicked(self):
         # Verifica se já existe uma thread rodando
-        if self.bot_thread and self.bot_thread.isRunning():
+        if self.bot_thread:
             print("Bot já está em execução. Finalizando...")
             self.bot_thread.stop()  # Encerra a thread existente
             self.bot_thread = None  # Reseta a instância
@@ -45,7 +45,7 @@ class MainWindow(QMainWindow):
             # Inicia uma nova instância da thread
             self.bot_thread = BotThread()
             self.bot_thread.start()
-            self.button.setText("Encerrando sistema de cadastro AVA")
+            self.button.setText("Encerrar operação de cadastro AVA")
 
 
 def main():
