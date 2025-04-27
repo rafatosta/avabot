@@ -23,13 +23,20 @@ class AVARegistrationTool(AvaWebDrive):
 
         try:
             self.login()
-            # Selecione o curso
 
-            # 🔹 Aguarda um elemento que indica que o login foi concluído
+            # Aguarda a mudança da URL que indica que o login foi concluído
             WebDriverWait(self.driver, timeout=99999).until(
                 lambda driver: driver.current_url == self.cursos)
 
             print("Login realizado com sucesso!")
+
+            # Aguarda o botão com o valor 'Inscrever usuários' 
+            button = WebDriverWait(self.driver, timeout=99999).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[@id="enrolusersbutton-1"]/div/input[1]'))
+            )
+            button.click()  # Clica no botão após ele ser localizado e estiver clicável
+
+            print("Botão 'Inscrever usuários' clicado com sucesso!")
 
 
         except Exception as e:
