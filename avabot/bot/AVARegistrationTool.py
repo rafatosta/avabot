@@ -30,15 +30,22 @@ class AVARegistrationTool(AvaWebDrive):
 
             print("Login realizado com sucesso!")
 
-            # Aguarda o botão com o valor 'Inscrever usuários' 
+            # Aguarda o botão com o valor 'Inscrever usuários'
             button = WebDriverWait(self.driver, timeout=99999).until(
-                EC.element_to_be_clickable((By.XPATH, '//*[@id="enrolusersbutton-1"]/div/input[1]'))
+                EC.element_to_be_clickable(
+                    (By.XPATH, '//*[@id="enrolusersbutton-1"]/div/input[1]'))
             )
-            button.click()  # Clica no botão após ele ser localizado e estiver clicável
+            button.click()
 
             print("Botão 'Inscrever usuários' clicado com sucesso!")
 
+            # Seleciona o botão para pesquisar alunos
+            input_field = self.find_element(
+                By.XPATH, '//input[@data-fieldtype="autocomplete"]', 99999)
+
+            input_field.send_keys("Nome do aluno")
+            input_field.click()
 
         except Exception as e:
             print(f"❌ Erro ao tentar logar: {e}")
-            #self.close()
+            # self.close()
