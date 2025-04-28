@@ -2,7 +2,7 @@ from avabot.webdrive.AvaWebDrive import AvaWebDrive
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-
+import time
 
 class AVARegistrationTool(AvaWebDrive):
 
@@ -48,6 +48,9 @@ class AVARegistrationTool(AvaWebDrive):
                         (By.XPATH, '//input[@data-fieldtype="autocomplete"]'))
                 )
                 input_field.send_keys(aluno)
+
+                # Aguarda 2 segundos antes de tentar interagir
+                time.sleep(2)
 
                 # Aguarda até que o elemento da sugestão esteja disponível
                 input_aluno = WebDriverWait(self.driver, 99999).until(
