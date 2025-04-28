@@ -23,6 +23,24 @@ class Parser:
         else:
             print(f"Não foi possível capturar nome e matrícula para: {string}")
             return None, None, None
+    
+    @staticmethod
+    def extrair_nome_secundario(string):
+        "Exemplo: Funalo de tal (Meu outro nome)"
+
+        # Expressão regular para capturar nome principal e nome secundário
+        pattern = r"([A-Za-zÀ-ÖØ-öø-ÿ\s]+)\s*\((([A-Za-zÀ-ÖØ-öø-ÿ\s]+))\)"
+
+        # Aplicando o regex
+        match = re.match(pattern, string)
+
+        # Se houver correspondência, retornamos o nome secundário ou a string original
+        if match:
+            nome_secundario = match.group(2).strip() if match.group(2) else string
+            return nome_secundario
+        else:
+            print(f"Não foi possível capturar o nome secundário para: {string}")
+            return string
 
     @staticmethod
     def extrair_dados_bancarios(string):

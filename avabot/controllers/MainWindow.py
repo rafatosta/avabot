@@ -1,6 +1,7 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QLabel, QLineEdit, QPushButton, QFileDialog, QListWidget, QSizePolicy
 from avabot.controllers.BotThread import BotThread
+from avabot.services.Parser import Parser
 from avabot.services.PlanilhaHandler import PlanilhaHandler
 
 
@@ -77,7 +78,11 @@ class MainWindow(QMainWindow):
 
             # Adiciona os alunos na lista
             for linha in dados_planilha:
-                self.alunos.append(linha.get('Nome'))
+
+                nome = linha.get('Nome')
+                nome_secundario = Parser.extrair_nome_secundario(nome)
+
+                self.alunos.append(nome_secundario)
 
             # Atualiza a lista de alunos na interface
             for aluno in self.alunos:
