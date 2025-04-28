@@ -12,7 +12,10 @@ try:
         url=avabot.__website__,
         license='GPLv3+',
         packages=['avabot',
-                  'avabot.services'
+                  'avabot.services',
+                  'avabot.controllers'
+                  'avabot.webdrive',
+                  'avabot.bot'
                   ],
         include_package_data=True,
         package_data={},
