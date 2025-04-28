@@ -6,3 +6,4 @@ setuptools
 xlrd
 xlsxwriter
 PyQt6
+pyinstaller
