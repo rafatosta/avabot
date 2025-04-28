@@ -22,7 +22,7 @@ class AVARegistrationTool(AvaWebDrive):
     def exec(self):
 
         try:
-            self.login()
+            self.login_manual()
 
             # Aguarda a mudança da URL que indica que o login foi concluído
             WebDriverWait(self.driver, timeout=99999).until(
